@@ -1,12 +1,13 @@
 import React from 'react';
-import './App.css';
+import { Route } from 'react-router-dom';
+import { Login } from '../../features/f1-login/l1-ui/Login';
 
 function App() {
-  return (
-    <div className="App">
-
-    </div>
-  );
+    return (
+        <>
+            <Login/>
+        </>
+    );
 }
 
 export default App;
