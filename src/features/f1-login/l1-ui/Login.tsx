@@ -64,6 +64,7 @@ export const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
                     </Button>
                 </Form.Item>
             </Form>
+            <div className={style.backgroundColor}></div>
             <div className={style.background}></div>
         </>
     )
