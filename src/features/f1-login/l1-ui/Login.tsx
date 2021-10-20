@@ -15,11 +15,10 @@ type LoginPropsType = {}
 export const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
 
     const isLoggedIn = useSelector<AppStateType, boolean>(state => state.login.isLoggedIn);
-    const dispatch = useDispatch();
+
     if (isLoggedIn) {
         return <Redirect to={HOTELS_PAGE}/>;
     }
-
 
 
     return (
@@ -60,15 +59,20 @@ export const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
                             min: 8,
                             message: 'Must be more than  8 characters!',
                         },
+                        () => ({
+                            validator(_, value) {
+                                if (!/[а-яё]+/i.test(value)) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(new Error('Please use the latin words!!'));
+                            },
+                        }),
 
                     ]}
                 >
                     <Input.Password
                         prefix={<LockOutlined/>}
-                        placeholder="Password"
-                        // iconRender={visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
-
-                    />
+                        placeholder="Password"/>
                 </Form.Item>
 
                 <Form.Item>

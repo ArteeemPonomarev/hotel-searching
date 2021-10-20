@@ -3,7 +3,7 @@ import {InferActionsType} from "../../../main/m2-bll/store";
 const initialState: initialStateType = {
     email: null,
     password: null,
-    isLoggedIn: true
+    isLoggedIn: false
 }
 
 enum AuthEvents {

@@ -81,10 +81,10 @@ export const Hotels = () => {
                             <div className={style.hotel_check_in_date}>Значение даты заезда</div>
                         </header>
                         <HotelsCarousel/>
-                        <div className={style.hotel_favortes_amount}>Добавлено в избранное: {`js code - number`} отеля</div>
+                        <div className={style.hotel_favorites_amount}>Добавлено в избранное: {`js code - number`} отеля</div>
                     </main>
                     <aside className={style.hotels_favorites}>
-
+                        <h3>Избранное</h3>
                     </aside>
                 </div>
             </div>
