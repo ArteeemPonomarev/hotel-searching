@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {Button, Form, Input} from 'antd';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
@@ -10,21 +10,32 @@ import {Redirect} from 'react-router-dom';
 import {authActions} from "../l2-bll/login-reducer";
 
 
-type LoginPropsType = {}
+type LoginPropsType = {
+    isAuth: boolean
+    setIsAuth: (isAuth: boolean) => void
+}
 
-export const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
+export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
 
-    const isLoggedIn = useSelector<AppStateType, boolean>(state => state.login.isLoggedIn);
+    const dispatch = useDispatch();
 
-    if (isLoggedIn) {
+    const onSubmit = useCallback((values: {
+        email: string,
+        password: string
+    }) => {
+        dispatch(authActions.setUserData({...values, isLoggedIn: true}))
+        setIsAuth(true)
+    }, [setIsAuth])
+
+    if (isAuth) {
         return <Redirect to={HOTELS_PAGE}/>;
     }
-
 
     return (
         <>
             <Form
                 className={style.login_form}
+                onFinish={onSubmit}
             >
                 <span className={style.login_form_title}>Simple Hotel Check</span>
                 <Form.Item

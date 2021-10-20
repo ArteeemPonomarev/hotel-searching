@@ -4,19 +4,25 @@ import axios from 'axios';
 // const myId = 338065;
 
 
-
 const instance = axios.create({
     baseURL: 'http://engine.hotellook.com/api/v2/cache.json'
 })
 
 export const hotelsSearchApi = {
-    getHotelsInfo (location: string, checkIn: string, checkOut: string, limit: string) {
-        return instance.get<HotelInfo[]>(`?location=${location}&currency=rub&checkIn=${checkIn}&checkOut=${checkOut}&limit=${limit}`)
+    getHotelsInfo: async (userParams: UserParamsType) =>  {
+        const response = await instance.get<HotelInfo[]>('', {params: {...userParams}})
+        return response.data
     }
 }
 
+export type UserParamsType = {
+    location: string
+    checkIn: string
+    checkOut: string
+    limit: string
+}
 
-type HotelInfo = {
+export type HotelInfo = {
     pricePercentile: PricePercentileType
     priceForm: number
     priceAvg: number
@@ -27,7 +33,7 @@ type HotelInfo = {
     hotelName: string
 }
 
-type PricePercentileType = {
+export type PricePercentileType = {
     3: number
     10: number
     35: number
@@ -36,7 +42,7 @@ type PricePercentileType = {
     99: number
 }
 
-type HotelLocation = {
+export type HotelLocation = {
     name: string
     country: string
     state: null

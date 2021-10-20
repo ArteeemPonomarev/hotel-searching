@@ -11,17 +11,17 @@ enum AuthEvents {
 }
 
 export const authActions = {
-    setUserData: (payload: initialStateType) => {
+    setUserData: (payload: { email: string | null, password: string | null, isLoggedIn: boolean }) => {
         return {
             type: AuthEvents.SET_USER_DATA,
             payload
-        }
+        } as const
     }
 }
 
 
 export const loginReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
-    switch(action.type) {
+    switch (action.type) {
         case AuthEvents.SET_USER_DATA:
             return {...state, ...action.payload}
         default:

@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'antd/dist/antd.css';
 import style from './Hotels.module.css';
 import {Button, DatePicker, Form, Input} from "antd";
 import {HotelsCarousel} from "../../f3-hotelsCarousel/HotelsCarousel";
-import {useSelector} from "react-redux";
-import {AppStateType} from "../../../main/m2-bll/store";
 import {Redirect} from "react-router-dom";
 import {LOGIN_PAGE} from "../../../common/c2-routes/routes";
+import {useDispatch} from "react-redux";
+import { fetchData } from '../h2-bll/hotelSearch-sagas';
 
-export const Hotels = () => {
-    const isLoggedIn = useSelector<AppStateType, boolean>(state => state.login.isLoggedIn)
 
-    if(!isLoggedIn) {
+type HotelPagePropsType = {
+    isAuth: boolean
+    setIsAuth: (isAuth: boolean) => void
+}
+
+export const Hotels: React.FC<HotelPagePropsType> = ({isAuth}) => {
+
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(fetchData({
+    //         location: 'Moscow',
+    //         checkIn: '2021-10-25',
+    //         checkOut: '2021-10-30',
+    //         limit: '10'
+    //     }));
+    // }, [dispatch]);
+
+    if(!isAuth) {
         return <Redirect to={LOGIN_PAGE}/>
     }
 
