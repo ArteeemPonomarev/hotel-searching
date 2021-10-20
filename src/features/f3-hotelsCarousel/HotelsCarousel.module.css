@@ -1,0 +1,8 @@
+.carousel_hotels_wrapper{
+    padding: 0 32px;
+}
+.carousel_hotel {
+    width: 164px;
+    height: 149px;
+    cursor: pointer;
+}

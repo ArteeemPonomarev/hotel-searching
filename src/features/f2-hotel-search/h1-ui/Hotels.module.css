@@ -1,0 +1,83 @@
+.hotels_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+.hotels_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+h1{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    padding: 32px;
+    margin: 0;
+}
+.hotels_logout {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.408px;
+    color: #41522E;
+    padding: 36px 68px;
+
+}
+.content_wrapper {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 360px 664px;
+    grid-template-rows: repeat(2, 410px);
+    grid-gap: 24px;
+
+}
+.hotels_searchFrom {
+    width: 360px;
+    height: 410px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+}
+.hotels_content {
+    width: 664px;
+    height: 902px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+}
+.hotels_content_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 48px;
+}
+h2 {
+    margin: 0;
+    padding: 0 0 0 32px;
+
+}
+.hotel_check_in_date {
+    padding-right: 32px;
+}
+.hotels_favorites {
+    width: 360px;
+    height: 472px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+}
+.hotel_favortes_amount {
+    padding-left: 32px;
+    margin-top: 28px;
+}
+.backgroundHotels {
+    position: relative;
+    background: #F4F4F4;
+    height: 1224px;
+}
+/*исправить фон!!!*/

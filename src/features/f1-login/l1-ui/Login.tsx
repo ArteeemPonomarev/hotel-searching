@@ -1,13 +1,26 @@
 import React from 'react';
-import {Form, Input, Button} from 'antd';
-import {UserOutlined, LockOutlined} from '@ant-design/icons';
+import {Button, Form, Input} from 'antd';
+import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import style from './Login.module.css';
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../../main/m2-bll/store";
+import {HOTELS_PAGE} from "../../../common/c2-routes/routes";
+import {Redirect} from 'react-router-dom';
+import {authActions} from "../l2-bll/login-reducer";
 
 
 type LoginPropsType = {}
 
 export const Login: React.FC<LoginPropsType> = (props: LoginPropsType) => {
+
+    const isLoggedIn = useSelector<AppStateType, boolean>(state => state.login.isLoggedIn);
+    const dispatch = useDispatch();
+    if (isLoggedIn) {
+        return <Redirect to={HOTELS_PAGE}/>;
+    }
+
+
 
     return (
         <>
