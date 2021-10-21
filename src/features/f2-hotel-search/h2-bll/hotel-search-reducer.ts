@@ -4,9 +4,9 @@ import {HotelInfo} from "../../../main/m3-dal/mainApi";
 const initialState = {
     location: 'Moscow',
     hotels: [] as HotelInfo[],
-    checkIn: null as null | string,
-    ckeckOut: null as null | string,
-    limit: null as null | number
+    checkIn: '2021-10-25',
+    ckeckOut: '2021-10-30',
+    limit: '10'
 }
 
 enum HotelsEvents {
