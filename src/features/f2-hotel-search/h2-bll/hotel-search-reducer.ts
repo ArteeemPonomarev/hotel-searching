@@ -2,7 +2,7 @@ import {InferActionsType} from "../../../main/m2-bll/store";
 import {HotelInfo} from "../../../main/m3-dal/mainApi";
 
 const initialState = {
-    location: 'Moscow',
+    location: 'Москва',
     hotels: [] as HotelInfo[],
     checkIn: '2021-10-25',
     ckeckOut: '2021-10-30',

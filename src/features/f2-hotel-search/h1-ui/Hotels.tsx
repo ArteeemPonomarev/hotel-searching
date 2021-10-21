@@ -7,6 +7,8 @@ import {LOGIN_PAGE} from "../../../common/c2-routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../main/m2-bll/store";
 import {HotelSearchForm} from "./h1-ui-components/HotelSearchForm";
+import moment from 'moment';
+import 'moment/locale/ru';
 
 
 type HotelPagePropsType = {
@@ -21,6 +23,12 @@ export const Hotels: React.FC<HotelPagePropsType> = ({isAuth}) => {
     const checkOut = useSelector<AppStateType,string>(state => state.hotels.checkIn);
     const limit = useSelector<AppStateType,string>(state => state.hotels.limit);
     const dispatch = useDispatch();
+
+    const checkInDate = moment(checkIn).format('LL');
+    const checkInDateFormated = checkInDate.slice(0, checkInDate.length - 3);
+
+    console.log(checkInDate)
+    console.log(checkInDateFormated)
 
     // useEffect(() => {
     //     dispatch(fetchData({ location, checkIn, checkOut, limit }));
@@ -44,8 +52,8 @@ export const Hotels: React.FC<HotelPagePropsType> = ({isAuth}) => {
                     <HotelSearchForm />
                     <main className={style.hotels_content}>
                         <header className={style.hotels_content_header}>
-                            <h2> Отели &gt; Москва</h2>
-                            <div className={style.hotel_check_in_date}>Значение даты заезда</div>
+                            <h2> Отели &gt; {location}</h2>
+                            <div className={style.hotel_check_in_date}>{checkInDateFormated}</div>
                         </header>
                         <HotelsCarousel/>
                         <div className={style.hotel_favorites_amount}>Добавлено в избранное: {`js code - number`} отеля</div>

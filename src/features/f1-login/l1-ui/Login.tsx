@@ -75,7 +75,7 @@ export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
                                 if (!/[а-яё]+/i.test(value)) {
                                     return Promise.resolve();
                                 }
-                                return Promise.reject(new Error('Please use the latin words!!'));
+                                return Promise.reject(new Error('Please use the latin letters!!'));
                             },
                         }),
 
