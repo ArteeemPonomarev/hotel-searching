@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './HotelsCards.module.css';
 import {HotelCard} from "./HotelsCard/HotelCard";
 import {HotelInfoDomainType} from "../../../h2-bll/hotel-search-reducer";
@@ -12,6 +12,15 @@ type HotelsCardsPropsType = {
 
 
 export const HotelsCards: React.FC<HotelsCardsPropsType> = React.memo(({hotels,checkInDate,amountOfDays,checkInDateFormated}) => {
+
+
+
+    useEffect(() => {
+        if(hotels.length === 0) {
+
+        }
+    }, [])
+
     return (
         <div className={style.hotels_cards}>
             {hotels.map(h => {

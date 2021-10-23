@@ -6,13 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./main/m2-bll/store";
+import moment from 'moment';
+import {ConfigProvider} from "antd";
+import ru_RU from "antd/lib/locale/ru_RU";
+
+moment.locale('ru')
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
-    </Provider>,
+    <ConfigProvider locale={ru_RU}>
+        <Provider store={store}>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </Provider>
+    </ConfigProvider>,
     document.getElementById('root')
 );
 

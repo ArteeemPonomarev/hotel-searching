@@ -20,14 +20,14 @@ export const HotelSearchForm = () => {
         const checkOutDate = new Date(checkInAfterMoment);
         const checkOut = moment(checkOutDate.setDate(checkOutDate.getDate() + 10)).format('YYYY-MM-DD');
         dispatch(hotelsActions.setUserParams(values.location, checkInAfterMoment, values.checkOutDate, checkOut))
-        dispatch(fetchData({location: values.location, checkIn:checkInAfterMoment, checkOut: checkOut, limit: '10' }))
+        dispatch(fetchData({location: values.location, checkIn: checkInAfterMoment, checkOut: checkOut, limit: '10'}))
     }, [])
 
     const date = moment();
-    console.log(date.subtract(1,'day'))
+    console.log(date.subtract(1, 'day'))
 
     const disabledDatesHandler = (current: Moment) => {
-        return moment().add(-1, 'days')  >= current
+        return moment().add(-1, 'days') >= current
     }
 
     return (
@@ -51,7 +51,6 @@ export const HotelSearchForm = () => {
                         }),
                     ]}
                 >
-
                     <Input className={style.searchForm_field}
                            type="text"
                            name="location"
@@ -67,10 +66,8 @@ export const HotelSearchForm = () => {
                             message: 'Please input check-in date!',
                         },
                     ]}>
-                    <DatePicker defaultValue={moment()}
-                                disabledDate={disabledDatesHandler}
+                    <DatePicker disabledDate={disabledDatesHandler}
                                 className={`${style.datepicker_checkIn} ${style.searchForm_field}`}/>
-
                 </Form.Item>
                 <div className={style.searchForm_field_title}>Количество дней</div>
                 <Form.Item
@@ -97,7 +94,8 @@ export const HotelSearchForm = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" className={`${style.searchForm_btn} ${style.searchForm_field}`}>
+                    <Button type="primary" htmlType="submit"
+                            className={`${style.searchForm_btn} ${style.searchForm_field}`}>
                         Найти
                     </Button>
                 </Form.Item>

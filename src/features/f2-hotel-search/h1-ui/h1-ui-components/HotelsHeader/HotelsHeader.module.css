@@ -10,6 +10,7 @@ h1{
     line-height: 28px;
     padding: 32px;
     margin: 0;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 .hotels_logout {
     color: #41522E;
@@ -21,6 +22,7 @@ h1{
     background-color: transparent;
     border: none;
     box-shadow: none;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 .hotels_logout:hover {
     background: #F4F4F4;

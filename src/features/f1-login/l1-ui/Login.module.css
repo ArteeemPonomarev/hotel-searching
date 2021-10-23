@@ -47,6 +47,7 @@
     line-height: 28px;
     display: inline-block;
     margin-bottom: 32px;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 .login_form_btn{
     background: linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
@@ -57,6 +58,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 19px;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 .login_form_btn:hover {
     cursor: pointer;

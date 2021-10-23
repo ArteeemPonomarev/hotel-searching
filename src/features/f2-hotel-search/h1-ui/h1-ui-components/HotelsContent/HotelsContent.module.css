@@ -18,6 +18,7 @@
     font-size: 32px;
     line-height: 37px;
     color: #424242;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 .hotel_choosen > img {
     margin: 0 15px;
@@ -27,6 +28,7 @@
     line-height: 28px;
     color: #41522E;
     padding-right: 32px;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 .hotel_favorites_amount {
     padding-left: 32px;
@@ -36,6 +38,7 @@
     line-height: 22px;
     letter-spacing: -0.408px;
     color: #424242;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 .amount_favorities_hotels {
     font-weight: 500;
@@ -43,4 +46,5 @@
     line-height: 22px;
     letter-spacing: -0.408px;
     color: #41522E;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }

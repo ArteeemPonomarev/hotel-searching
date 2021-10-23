@@ -27,9 +27,9 @@ export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
         let starsArr = []
         for (let i = 0; i < 5; i++) {
             if (stars > i) {
-                starsArr.push(1)
+                starsArr.push({id: i, value: 1})
             } else {
-                starsArr.push(0)
+                starsArr.push({id: i, value: 0})
             }
         }
         return starsArr
@@ -55,22 +55,22 @@ export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
                     <img className={style.hotel_checkin_date_dash} src={dash} alt="dash"/>
                     <span>{props.amountDays} {days}</span>
                 </p>
-                <p style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div>
                         {starsElement(props.stars).map(s => {
-                            if (s === 1) {
+                            if (s.value === 1) {
                                 return (
-                                    <img src={star} alt="star"/>
+                                    <img key={s.id} src={star} alt="star"/>
                                 )
                             } else {
                                 return (
-                                    <img src={emptyStar} alt="emptyStar"/>
+                                    <img key={s.id} src={emptyStar} alt="emptyStar"/>
                                 )
                             }
                         })}
                     </div>
                     <div className={style.hotel_price}>Price:</div>
-                </p>
+                </div>
             </div>
             <div className={style.hotel_cars_options}>
                 <div className={style.hotel_card_favorite}>
