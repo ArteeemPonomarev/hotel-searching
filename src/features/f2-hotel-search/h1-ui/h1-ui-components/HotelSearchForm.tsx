@@ -1,10 +1,15 @@
 import React, {useCallback} from 'react';
 import 'antd/dist/antd.css';
 import style from "./HotelsSearchForm.module.css";
-import {Button, ConfigProvider, DatePicker, Form, Input} from "antd";
+import {Button, DatePicker, Form, Input} from "antd";
 import moment, {Moment} from "moment";
+import {useDispatch} from "react-redux";
+import {fetchData} from "../../h2-bll/hotelSearch-sagas";
+import {hotelsActions} from "../../h2-bll/hotel-search-reducer";
 
 export const HotelSearchForm = () => {
+
+    const dispatch = useDispatch()
 
     const onSubmit = useCallback((values: {
         location: string,
@@ -13,8 +18,9 @@ export const HotelSearchForm = () => {
     }) => {
         const checkInAfterMoment = moment(values.checkInDate).format('YYYY-MM-DD');
         const checkOutDate = new Date(checkInAfterMoment);
-        console.log(moment(checkOutDate.setDate(checkOutDate.getDate() + 10)).format('YYYY-MM-DD'))
-        console.log('1')
+        const checkOut = moment(checkOutDate.setDate(checkOutDate.getDate() + 10)).format('YYYY-MM-DD');
+        dispatch(hotelsActions.setUserParams(values.location, checkInAfterMoment, values.checkOutDate, checkOut))
+        dispatch(fetchData({location: values.location, checkIn:checkInAfterMoment, checkOut: checkOut, limit: '10' }))
     }, [])
 
     const date = moment();
@@ -52,6 +58,7 @@ export const HotelSearchForm = () => {
                            placeholder="Введите город"
                     />
                 </Form.Item>
+                <div className={style.searchForm_field_title}>Дата заселения</div>
                 <Form.Item
                     name="checkInDate"
                     rules={[
@@ -60,8 +67,6 @@ export const HotelSearchForm = () => {
                             message: 'Please input check-in date!',
                         },
                     ]}>
-                    <div className={style.searchForm_field_title}>Дата заселения</div>
-
                     <DatePicker defaultValue={moment()}
                                 disabledDate={disabledDatesHandler}
                                 className={`${style.datepicker_checkIn} ${style.searchForm_field}`}/>

@@ -1,0 +1,35 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+.hotel_card {
+    width: 584px;
+    height: 99px;
+    border-bottom: 1px solid #878787;
+    display: flex;
+
+}
+.hotel_card_description {
+    width: 100%;
+    padding-top: 19px;
+}
+.hotelName {
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: #424242;
+}
+.hotel_dates {
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: #878787;
+}
+.hotel_price {
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: #878787;
+}
