@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import style from './HotelCard.module.css';
-import dash from '../../../../assets/icons/dash.png';
-import star from '../../../../assets/icons/star.png';
-import emptyStar from '../../../../assets/icons/emptyStar.png';
-import heart from '../../../../assets/icons/heart.png'
-import redHeart from '../../../../assets/icons/redHeart.png'
+import dash from '../../../../../../assets/icons/dash.png';
+import star from '../../../../../../assets/icons/star.png';
+import emptyStar from '../../../../../../assets/icons/emptyStar.png';
+import heart from '../../../../../../assets/icons/heart.png'
+import redHeart from '../../../../../../assets/icons/redHeart.png'
 import {useDispatch} from "react-redux";
-import {hotelsActions} from "../../h2-bll/hotel-search-reducer";
+import {hotelsActions} from "../../../../h2-bll/hotel-search-reducer";
+import {wordEnd} from "../../../../../../utils/wordEnd";
 
 type HotelCardPropsType = {
     hotelName: string
@@ -16,6 +17,7 @@ type HotelCardPropsType = {
     favorite: boolean
     checkInDate: string
     hotelId: number
+    checkInDateFormated: string
 }
 
 export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
@@ -33,21 +35,25 @@ export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
         return starsArr
     }
 
-    const followHotel = () => {
+    const followHotel = useCallback(() => {
+        dispatch(hotelsActions.setFavoriteHotel(true, props.hotelId));
         dispatch(hotelsActions.addFavoriteHotel(props.hotelId));
-        dispatch(hotelsActions.setFavoriteHotel(true, props.hotelId))
-    }
-    const unFollowHotel = () => {
-        dispatch(hotelsActions.setFavoriteHotel(false, props.hotelId))
-    }
+    }, [dispatch, props.hotelId])
+    const unFollowHotel = useCallback(() => {
+        dispatch(hotelsActions.setFavoriteHotel(false, props.hotelId));
+        dispatch(hotelsActions.removeFavoriteHotel(props.hotelId));
+    }, [dispatch, props.hotelId])
 
+    const days = wordEnd(+props.amountDays, '', ['день', 'дня', 'дней'])
 
     return (
         <div className={style.hotel_card}>
             <div className={style.hotel_card_description}>
                 <p className={style.hotelName}>{props.hotelName}</p>
                 <p className={style.hotel_dates}>
-                    <span>{props.checkInDate}</span><img src={dash} alt="dash"/><span>{props.amountDays}</span>
+                    <span>{props.checkInDateFormated}</span>
+                    <img className={style.hotel_checkin_date_dash} src={dash} alt="dash"/>
+                    <span>{props.amountDays} {days}</span>
                 </p>
                 <p style={{display: 'flex', justifyContent: 'space-between'}}>
                     <div>
@@ -66,15 +72,15 @@ export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
                     <div className={style.hotel_price}>Price:</div>
                 </p>
             </div>
-            <div>
-                <div>
+            <div className={style.hotel_cars_options}>
+                <div className={style.hotel_card_favorite}>
                     {props.favorite ?
                         <img src={redHeart} alt="like" onClick={unFollowHotel}/>
                         : <img src={heart} alt="like" onClick={followHotel}/>
                     }
 
                 </div>
-                <div >{props.price}</div>
+                <div className={style.hotel_card_price_amount}>{props.price} {'\u20BD'}</div>
             </div>
         </div>
     );

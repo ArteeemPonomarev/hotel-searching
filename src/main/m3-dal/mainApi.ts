@@ -10,7 +10,7 @@ const instance = axios.create({
 
 export const hotelsSearchApi = {
     getHotelsInfo: async (userParams: UserParamsType) =>  {
-        const response = await instance.get<HotelInfo[]>('', {params: {...userParams}})
+        const response = await instance.get<HotelInfo[]>('', {params: {...userParams, currency:'rub'}})
         return response.data
     }
 }

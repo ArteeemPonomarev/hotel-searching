@@ -1,0 +1,29 @@
+.favorites_hotels {
+    width: 360px;
+    height: 472px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+}
+.favorites_title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #424242;
+    padding: 32px;
+}
+.selectionBlock {
+    display: flex;
+}
+.favorites_hotels_list {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: auto;
+}
+.favorites_hotels_list::-webkit-scrollbar {
+    width: 2px;
+}
+.favorites_cards {
+    border-bottom: 1px solid #e7e7e7;;
+}

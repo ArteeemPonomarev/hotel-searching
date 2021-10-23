@@ -3,11 +3,10 @@ p {
     padding: 0;
 }
 .hotel_card {
-    width: 584px;
-    height: 99px;
+    width: 100%;
+    min-height: 99px;
     display: flex;
     margin-right: 10px;
-
 }
 .hotel_card_description {
     width: 100%;
@@ -26,10 +25,30 @@ p {
     letter-spacing: -0.408px;
     color: #878787;
 }
+.hotel_checkin_date_dash {
+    margin: 0 10px;
+}
 .hotel_price {
     font-weight: 300;
     font-size: 11px;
     line-height: 22px;
     letter-spacing: -0.408px;
     color: #878787;
+}
+.hotel_cars_options {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.hotel_card_favorite {
+    margin-top: 20px;
+}
+.hotel_card_price_amount {
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: #424242;
+    margin-bottom: 17px;
 }

@@ -1,0 +1,40 @@
+.hotels_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+h1{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    padding: 32px;
+    margin: 0;
+}
+.hotels_logout {
+    color: #41522E;
+    padding: 36px 68px;
+    font-size: 22px;
+    line-height: 20px;
+    letter-spacing: -0.408px;
+    color: #41522E;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+.hotels_logout:hover {
+    background: #F4F4F4;
+    color: #41522E;
+}
+.hotels_logout:active {
+    background: #F4F4F4;
+    color: #41522E;
+}
+.hotels_logout:focus {
+    background: #F4F4F4;
+    color: #41522E;
+}
+.logout_btn_logo {
+    color: #41522E;
+    padding-left: 15px;
+}

@@ -4,8 +4,8 @@ import style from "./HotelsSearchForm.module.css";
 import {Button, DatePicker, Form, Input} from "antd";
 import moment, {Moment} from "moment";
 import {useDispatch} from "react-redux";
-import {fetchData} from "../../h2-bll/hotelSearch-sagas";
-import {hotelsActions} from "../../h2-bll/hotel-search-reducer";
+import {fetchData} from "../../../h2-bll/hotelSearch-sagas";
+import {hotelsActions} from "../../../h2-bll/hotel-search-reducer";
 
 export const HotelSearchForm = () => {
 
@@ -98,7 +98,7 @@ export const HotelSearchForm = () => {
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className={`${style.searchForm_btn} ${style.searchForm_field}`}>
-                        Войти
+                        Найти
                     </Button>
                 </Form.Item>
             </Form>

@@ -1,0 +1,46 @@
+.hotels_content {
+    width: 664px;
+    height: 902px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+}
+.hotels_content_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 48px;
+}
+.hotel_choosen {
+    margin: 0;
+    padding: 0 0 0 32px;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 37px;
+    color: #424242;
+}
+.hotel_choosen > img {
+    margin: 0 15px;
+}
+.hotel_check_in_date {
+    font-size: 24px;
+    line-height: 28px;
+    color: #41522E;
+    padding-right: 32px;
+}
+.hotel_favorites_amount {
+    padding-left: 32px;
+    margin: 28px 0 12px 0;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: #424242;
+}
+.amount_favorities_hotels {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.408px;
+    color: #41522E;
+}
