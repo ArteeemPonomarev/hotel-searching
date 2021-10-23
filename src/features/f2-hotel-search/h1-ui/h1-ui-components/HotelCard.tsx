@@ -3,7 +3,10 @@ import style from './HotelCard.module.css';
 import dash from '../../../../assets/icons/dash.png';
 import star from '../../../../assets/icons/star.png';
 import emptyStar from '../../../../assets/icons/emptyStar.png';
-import heart from '../../../../assets/icons/Vector (1).png'
+import heart from '../../../../assets/icons/heart.png'
+import redHeart from '../../../../assets/icons/redHeart.png'
+import {useDispatch} from "react-redux";
+import {hotelsActions} from "../../h2-bll/hotel-search-reducer";
 
 type HotelCardPropsType = {
     hotelName: string
@@ -12,9 +15,11 @@ type HotelCardPropsType = {
     stars: number
     favorite: boolean
     checkInDate: string
+    hotelId: number
 }
 
 export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
+    const dispatch = useDispatch()
 
     const starsElement = (stars: number) => {
         let starsArr = []
@@ -26,6 +31,14 @@ export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
             }
         }
         return starsArr
+    }
+
+    const followHotel = () => {
+        dispatch(hotelsActions.addFavoriteHotel(props.hotelId));
+        dispatch(hotelsActions.setFavoriteHotel(true, props.hotelId))
+    }
+    const unFollowHotel = () => {
+        dispatch(hotelsActions.setFavoriteHotel(false, props.hotelId))
     }
 
 
@@ -54,7 +67,13 @@ export const HotelCard: React.FC<HotelCardPropsType> = (props) => {
                 </p>
             </div>
             <div>
-                <div><img src={heart} alt="like"/></div>
+                <div>
+                    {props.favorite ?
+                        <img src={redHeart} alt="like" onClick={unFollowHotel}/>
+                        : <img src={heart} alt="like" onClick={followHotel}/>
+                    }
+
+                </div>
                 <div >{props.price}</div>
             </div>
         </div>

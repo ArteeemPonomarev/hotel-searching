@@ -13,9 +13,9 @@ import {HotelCard} from "./h1-ui-components/HotelCard";
 import {HotelInfo} from "../../../main/m3-dal/mainApi";
 import {wordEnd} from "../../../utils/wordEnd";
 import arrow from '../../../assets/icons/arrow.png';
-import { Button } from 'antd';
+import {Button} from 'antd';
 import {UploadOutlined} from "@ant-design/icons";
-import { fetchData } from '../h2-bll/hotelSearch-sagas';
+import {fetchData} from '../h2-bll/hotelSearch-sagas';
 import {HotelInfoDomainType} from "../h2-bll/hotel-search-reducer";
 import selectUp from '../../../assets/icons/selectUp.png';
 
@@ -27,10 +27,10 @@ type HotelPagePropsType = {
 
 export const Hotels: React.FC<HotelPagePropsType> = ({isAuth, setIsAuth}) => {
 
-    const location = useSelector<AppStateType,string>(state => state.hotels.location);
-    const checkIn = useSelector<AppStateType,string >(state => state.hotels.checkIn);
-    const checkOut = useSelector<AppStateType,string>(state => state.hotels.checkIn);
-    const limit = useSelector<AppStateType,string>(state => state.hotels.limit);
+    const location = useSelector<AppStateType, string>(state => state.hotels.location);
+    const checkIn = useSelector<AppStateType, string>(state => state.hotels.checkIn);
+    const checkOut = useSelector<AppStateType, string>(state => state.hotels.checkIn);
+    const limit = useSelector<AppStateType, string>(state => state.hotels.limit);
     const favoritesHotels = useSelector<AppStateType, HotelInfo[]>(state => state.hotels.favoritesHotels);
     const hotels = useSelector<AppStateType, HotelInfoDomainType[]>(state => state.hotels.hotels);
     const amountOfDays = useSelector<AppStateType, string>(state => state.hotels.daysAmount);
@@ -53,7 +53,7 @@ export const Hotels: React.FC<HotelPagePropsType> = ({isAuth, setIsAuth}) => {
 
     const amountHotels = wordEnd(favoritesHotels.length, 'отел', ['ь', 'я', 'ей']);
 
-    if(!isAuth) {
+    if (!isAuth) {
         return <Redirect to={LOGIN_PAGE}/>
     }
 
@@ -70,7 +70,7 @@ export const Hotels: React.FC<HotelPagePropsType> = ({isAuth, setIsAuth}) => {
                     </div>
                 </header>
                 <div className={style.content_wrapper}>
-                    <HotelSearchForm />
+                    <HotelSearchForm/>
                     <main className={style.hotels_content}>
                         <header className={style.hotels_content_header}>
                             <p className={style.hotel_choosen}> Отели <img src={arrow} alt="arrow"/> {location}</p>
@@ -85,13 +85,17 @@ export const Hotels: React.FC<HotelPagePropsType> = ({isAuth, setIsAuth}) => {
                         <div className={style.hotels_cards}>
                             {hotels.map(h => {
                                 return (
-                                    <HotelCard
-                                        hotelName={h.hotelName}
-                                        price={h.priceAvg}
-                                        checkInDate={checkInDate}
-                                        amountDays={amountOfDays}
-                                        favorite={h.favorite}
-                                        stars={h.stars}/>
+                                    <div className={style.hotel_card_wrapper} key={h.hotelId}>
+                                        <div className={style.hotel_logo}></div>
+                                        <HotelCard
+                                            hotelName={h.hotelName}
+                                            price={h.priceAvg}
+                                            checkInDate={checkInDate}
+                                            amountDays={amountOfDays}
+                                            favorite={h.favorite}
+                                            stars={h.stars}
+                                            hotelId={h.hotelId}/>
+                                    </div>
                                 )
                             })}
 
@@ -99,21 +103,34 @@ export const Hotels: React.FC<HotelPagePropsType> = ({isAuth, setIsAuth}) => {
                     </main>
                     <aside className={style.hotels_favorites}>
                         <h3 className={style.favorities_title}>Избранное</h3>
-                        <div className={style.favorities_raiting}>
-                            Рейтинг
-                            <img src={selectUp} alt="arrowUp"/>
-                            <img className={style.selectDown} src={selectUp} alt="arrowUp"/>
-                        </div>
-                        <div className={style.favorities_raiting}>
-                            Цена
-                            <img src={selectUp} alt="arrowUp"/>
-                            <img className={style.selectDown} src={selectUp} alt="arrowUp"/>
+                        <div className={style.selectionBlock}>
+                            <div className={style.favorities_raiting}>
+                                <div>Рейтинг</div>
+                                <div className={style.favorities_raiting_arrows}>
+                                    <div className={style.favorities_raiting_arrow}><img src={selectUp} alt="arrowUp"/>
+                                    </div>
+                                    <div className={style.favorities_raiting_arrow}><img className={style.selectDown}
+                                                                                         src={selectUp} alt="arrowUp"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={style.favorities_raiting}>
+                                <div>Цена</div>
+                                <div className={style.favorities_raiting_arrows}>
+                                    <div className={style.favorities_raiting_arrow}><img src={selectUp} alt="arrowUp"/>
+                                    </div>
+                                    <div className={style.favorities_raiting_arrow}><img className={style.selectDown}
+                                                                                         src={selectUp} alt="arrowUp"/>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </aside>
                 </div>
             </div>
             <div className={style.backgroundHotels}></div>
         </>
-    );
+);
 };
 

@@ -143,14 +143,45 @@ h1{
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
 }
+.hotel_card_wrapper {
+    display: flex;
+    border-bottom: 1px solid #878787;
+}
 .hotels_cards {
+    box-sizing: border-box;
     width: 600px;
     margin: 0 auto;
-    border: 1px solid black;
     height: 500px;
-    overflow: auto;
+    overflow-y: scroll;
+}
+.hotels_cards::-webkit-scrollbar-track {
+    border-radius: 2px;
 }
 
+.hotels_cards::-webkit-scrollbar {
+    width: 2px;
+}
+
+.hotels_cards::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #f0f2f5;
+}
+
+.hotels_cards:hover::-webkit-scrollbar-thumb {
+    background: #41522E;
+}
+
+.hotel_logo{
+    margin-right: 24px;
+    background-color: rgba(65, 82, 46, 0.05);
+    background-image: url("/src/assets/icons/house.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    align-self: center;
+}
 .hotel_card {
     width: 100%;
     height: 99px;
@@ -164,6 +195,9 @@ h1{
     color: #424242;
     padding: 32px;
 }
+.selectionBlock {
+    display: flex;
+}
 .favorities_raiting {
     border: 1px solid #41522E;
     box-sizing: border-box;
@@ -171,6 +205,20 @@ h1{
     width: 90px;
     height: 28px;
     margin-left: 32px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.408px;
+    color: #41522E;
+    padding: 4px 0 4px 8px;
+}
+.favorities_raiting_arrows {
+    padding: 8px 13px;
+}
+.favorities_raiting_arrow {
+    padding: 0;
+    margin: -13px;
 }
 .selectDown {
     transform: rotate(180deg);

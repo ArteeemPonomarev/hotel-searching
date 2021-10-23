@@ -14,7 +14,8 @@ const initialState = {
 enum HotelsEvents {
     SET_HOTELS_INFO = 'SET-HOTELS-INFO',
     SET_USERS_PARAMS = 'SET-USERS-PARAMS',
-    SET_FAVORITIE_HOTEL = 'SET-FAVOTITIE_HOTEL'
+    SET_FAVORITIE_HOTEL = 'SET-FAVOTITIE_HOTEL',
+    ADD_FAVORITE_HOTEL = 'ADD-FAVORITE-HOTEL'
 }
 
 export const hotelsActions = {
@@ -30,12 +31,18 @@ export const hotelsActions = {
             payload: {location, checkIn, daysAmount, checkOut}
         } as const
     },
-    setFavoriteHotel: (favorite: boolean) => {
+    setFavoriteHotel: (favorite: boolean, hotelId: number) => {
         return {
             type: HotelsEvents.SET_FAVORITIE_HOTEL,
-            payload: favorite
+            payload: {hotelId, favorite}
         } as const
     },
+    addFavoriteHotel: (hotelId: number) => {
+        return {
+            type: HotelsEvents.ADD_FAVORITE_HOTEL,
+            payload: hotelId
+        } as const
+    }
 }
 
 
@@ -52,6 +59,11 @@ export const hotelSearchReducer = (state: InitialStateType = initialState, actio
                 checkIn: action.payload.checkIn,
                 checkOut: action.payload.checkOut
             }
+        case HotelsEvents.SET_FAVORITIE_HOTEL:
+            const hotels = state.hotels.map(h => h.hotelId === action.payload.hotelId ? {...h, favorite: action.payload.favorite} : h);
+            return {...state, hotels}
+        case HotelsEvents.ADD_FAVORITE_HOTEL:
+            return {...state, favoritesHotels: state.hotels.filter(h => h.hotelId === action.payload)}
         default:
             return state
     }

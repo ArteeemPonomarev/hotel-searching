@@ -5,8 +5,8 @@ p {
 .hotel_card {
     width: 584px;
     height: 99px;
-    border-bottom: 1px solid #878787;
     display: flex;
+    margin-right: 10px;
 
 }
 .hotel_card_description {
