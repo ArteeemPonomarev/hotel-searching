@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import style from './HotelsFavoties.module.css';
-import {HotelRating} from "../HotelRaiting/HotelRating";
-import {HotelCard} from "../HotelsCards/HotelsCard/HotelCard";
+import {HotelRating} from "./HotelRaiting/HotelRating";
+import {HotelCard} from "../HotelsContent/HotelsCards/HotelsCard/HotelCard";
 import {HotelInfoDomainType, hotelsActions} from "../../../h2-bll/hotel-search-reducer";
 import {useDispatch} from "react-redux";
 
@@ -12,23 +12,43 @@ type HotelsFavotiesPropsTitle = {
     checkInDateFormated: string
 }
 
-export const HotelsFavoties:React.FC<HotelsFavotiesPropsTitle> = React.memo(({favoritesHotels,checkInDate, amountOfDays, checkInDateFormated}) => {
+export const HotelsFavoties: React.FC<HotelsFavotiesPropsTitle> = React.memo((
+    {
+        favoritesHotels,
+        checkInDate,
+        amountOfDays,
+        checkInDateFormated
+    }) => {
     const dispatch = useDispatch()
 
     const setBestRaitingHotels = useCallback(() => {
-        dispatch(hotelsActions.setBestRaitingHotels())
-    }, [dispatch, hotelsActions.setBestRaitingHotels])
-
+        dispatch(hotelsActions.setBestRatingHotels())
+    }, [dispatch]);
     const setWorstRatingHotel = useCallback(() => {
         dispatch(hotelsActions.setWorstRaitingHotels())
-    }, [dispatch, hotelsActions.setWorstRaitingHotels])
-
+    }, [dispatch]);
     const setMostExpensiveHotels = useCallback(() => {
         dispatch(hotelsActions.setMostExpensiveHotels())
-    }, [dispatch, hotelsActions.setMostExpensiveHotels])
+    }, [dispatch]);
     const setTheCheapestHotels = useCallback(() => {
         dispatch(hotelsActions.setTheCheapestHotels())
-    }, [dispatch, hotelsActions.setTheCheapestHotels])
+    }, [dispatch])
+
+    const favoritesHotelsList = favoritesHotels.map(h => {
+        return (
+            <div key={h.hotelId} className={style.favorites_cards}>
+                <HotelCard
+                    checkInDateFormated={checkInDateFormated}
+                    hotelName={h.hotelName}
+                    price={h.priceAvg}
+                    checkInDate={checkInDate}
+                    amountDays={amountOfDays}
+                    favorite={h.favorite}
+                    stars={h.stars}
+                    hotelId={h.hotelId}/>
+            </div>
+        )
+    })
 
     return (
         <aside className={style.favorites_hotels}>
@@ -41,22 +61,8 @@ export const HotelsFavoties:React.FC<HotelsFavotiesPropsTitle> = React.memo(({fa
                              sortBetterAtFirst={setMostExpensiveHotels}
                              sortWorstAtFirst={setTheCheapestHotels}/>
             </div>
-            <div className={style.favorites_hotels_list}>
-                {favoritesHotels.map(h => {
-                    return (
-                        <div className={style.favorites_cards}>
-                        <HotelCard
-                            checkInDateFormated={checkInDateFormated}
-                            hotelName={h.hotelName}
-                            price={h.priceAvg}
-                            checkInDate={checkInDate}
-                            amountDays={amountOfDays}
-                            favorite={h.favorite}
-                            stars={h.stars}
-                            hotelId={h.hotelId}/>
-                        </div>
-                    )
-                })}
+            <div className={style.favorites_hotels_list}>`
+                {favoritesHotelsList}
             </div>
         </aside>
     );

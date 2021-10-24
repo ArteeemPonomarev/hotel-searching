@@ -7,14 +7,12 @@ export const wordEnd = (value: number, root: string, endings: string[]) => {
         root += endings[2];
     } else if (value2 > 1 && value2 < 5) {
         root += endings[1];
-    }
-    else if (value2 === 1) {
+    } else if (value2 === 1) {
         root += endings[0]
     } else {
         root += endings[2]
     }
 
-    console.log( root)
     return root;
 
 }

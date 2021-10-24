@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import {Button, Form, Input} from 'antd';
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import style from './Login.module.css';
-import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../main/m2-bll/store";
-import {HOTELS_PAGE} from "../../../common/c2-routes/routes";
+import {useDispatch} from "react-redux";
+import {HOTELS_PAGE} from "../../../common/c1-routes/routes";
 import {Redirect} from 'react-router-dom';
 import {authActions} from "../l2-bll/login-reducer";
 
@@ -16,16 +15,12 @@ type LoginPropsType = {
 }
 
 export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
-
     const dispatch = useDispatch();
 
-    const onSubmit = useCallback((values: {
-        email: string,
-        password: string
-    }) => {
-        dispatch(authActions.setUserData({...values, isLoggedIn: true}))
-        setIsAuth(true)
-    }, [setIsAuth])
+    const onSubmit = useCallback((values: { email: string, password: string }) => {
+        dispatch(authActions.setUserData({...values, isLoggedIn: true}));
+        setIsAuth(true);
+    }, [dispatch, setIsAuth])
 
     if (isAuth) {
         return <Redirect to={HOTELS_PAGE}/>;
@@ -35,8 +30,7 @@ export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
         <>
             <Form
                 className={style.login_form}
-                onFinish={onSubmit}
-            >
+                onFinish={onSubmit}>
                 <span className={style.login_form_title}>Simple Hotel Check</span>
                 <Form.Item
                     className={style.form_item}
@@ -50,13 +44,11 @@ export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
                             required: true,
                             message: 'Please input your Email!',
                         },
-                    ]}
-                >
+                    ]}>
                     <Input prefix={<UserOutlined/>}
                            type="email"
                            name="email"
-                           placeholder="Email"
-                    />
+                           placeholder="Email"/>
                 </Form.Item>
                 <Form.Item
                     className={style.form_item}
@@ -79,13 +71,11 @@ export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
                             },
                         }),
 
-                    ]}
-                >
+                    ]}>
                     <Input.Password
                         prefix={<LockOutlined/>}
                         placeholder="Password"/>
                 </Form.Item>
-
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className={style.login_form_btn}>
                         Войти

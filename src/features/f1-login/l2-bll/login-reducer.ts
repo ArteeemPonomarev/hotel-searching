@@ -3,13 +3,12 @@ import {InferActionsType} from "../../../main/m2-bll/store";
 const initialState: initialStateType = {
     email: null,
     password: null,
-    isLoggedIn: false
-}
+    isLoggedIn: false,
 
+}
 enum AuthEvents {
     SET_USER_DATA = 'SET_USER_DATA'
 }
-
 export const authActions = {
     setUserData: (payload: { email: string | null, password: string | null, isLoggedIn: boolean }) => {
         return {
@@ -18,8 +17,6 @@ export const authActions = {
         } as const
     }
 }
-
-
 export const loginReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case AuthEvents.SET_USER_DATA:
@@ -35,5 +32,6 @@ type initialStateType = {
     email: null | string
     password: null | string
     isLoggedIn: boolean
+
 }
 type ActionsType = InferActionsType<typeof authActions>

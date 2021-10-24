@@ -1,6 +1,6 @@
 import React from 'react';
 import style from "./HotelRaiting.module.css";
-import selectUp from "../../../../../assets/icons/selectUp.png";
+import selectUp from "../../../../../../assets/icons/selectUp.png";
 
 type HotelRaitingPropsType = {
     title: string

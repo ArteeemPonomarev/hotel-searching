@@ -36,8 +36,9 @@ p {
     letter-spacing: -0.408px;
     color: #878787;
 }
-.hotel_cars_options {
-    width: 120px;
+.hotel_cards_options {
+    margin-left: 8px;
+    min-width: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -45,11 +46,14 @@ p {
 }
 .hotel_card_favorite {
     margin-top: 20px;
+    cursor: pointer;
 }
 .hotel_card_price_amount {
     font-size: 17px;
+    font-weight: 400;
     line-height: 22px;
     letter-spacing: -0.408px;
     color: #424242;
     margin-bottom: 17px;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }

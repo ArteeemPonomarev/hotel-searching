@@ -4,7 +4,6 @@ import style from "./HotelsSearchForm.module.css";
 import {Button, DatePicker, Form, Input} from "antd";
 import moment, {Moment} from "moment";
 import {useDispatch} from "react-redux";
-import {fetchData} from "../../../h2-bll/hotelSearch-sagas";
 import {hotelsActions} from "../../../h2-bll/hotel-search-reducer";
 
 export const HotelSearchForm = () => {
@@ -19,12 +18,8 @@ export const HotelSearchForm = () => {
         const checkInAfterMoment = moment(values.checkInDate).format('YYYY-MM-DD');
         const checkOutDate = new Date(checkInAfterMoment);
         const checkOut = moment(checkOutDate.setDate(checkOutDate.getDate() + 10)).format('YYYY-MM-DD');
-        dispatch(hotelsActions.setUserParams(values.location, checkInAfterMoment, values.checkOutDate, checkOut))
-        dispatch(fetchData({location: values.location, checkIn: checkInAfterMoment, checkOut: checkOut, limit: '10'}))
-    }, [])
-
-    const date = moment();
-    console.log(date.subtract(1, 'day'))
+        dispatch(hotelsActions.setUserParams(values.location, checkInAfterMoment, values.checkOutDate, checkOut));
+    }, [dispatch])
 
     const disabledDatesHandler = (current: Moment) => {
         return moment().add(-1, 'days') >= current
@@ -49,13 +44,11 @@ export const HotelSearchForm = () => {
                                 return Promise.reject(new Error('Please use the latin or cyrillic letters!!'));
                             },
                         }),
-                    ]}
-                >
+                    ]}>
                     <Input className={style.searchForm_field}
                            type="text"
                            name="location"
-                           placeholder="Введите город"
-                    />
+                           placeholder="Введите город"/>
                 </Form.Item>
                 <div className={style.searchForm_field_title}>Дата заселения</div>
                 <Form.Item
@@ -85,14 +78,12 @@ export const HotelSearchForm = () => {
                                 return Promise.reject(new Error('Please enter only digit!'));
                             },
                         }),
-                    ]}
-                >
+                    ]}>
                     <Input className={style.searchForm_field}
                            type="text"
                            name="checkOutDate"
                            placeholder="Введите количество дней"/>
                 </Form.Item>
-
                 <Form.Item>
                     <Button type="primary" htmlType="submit"
                             className={`${style.searchForm_btn} ${style.searchForm_field}`}>
