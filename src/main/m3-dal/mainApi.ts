@@ -4,7 +4,7 @@ const instance = axios.create({
     baseURL: 'https://engine.hotellook.com/api/v2/cache.json',
 })
 
-const marker = 338065;
+//const marker = 338065;
 const token = 'e38af5b520f567205a7bf583e8d4d9e5';
 
 export const hotelsSearchApi = {
