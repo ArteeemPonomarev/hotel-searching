@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './main/m1-ui/App';
 import reportWebVitals from './reportWebVitals';
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import {store} from "./main/m2-bll/store";
 import moment from 'moment';
@@ -15,9 +15,9 @@ moment.locale('ru')
 ReactDOM.render(
     <ConfigProvider locale={ru_RU}>
         <Provider store={store}>
-            <HashRouter>
+            <BrowserRouter>
                 <App/>
-            </HashRouter>
+            </BrowserRouter>
         </Provider>
     </ConfigProvider>,
     document.getElementById('root')
