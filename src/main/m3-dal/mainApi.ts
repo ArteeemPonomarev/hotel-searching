@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const instance = axios.create({
     baseURL: 'https://engine.hotellook.com/api/v2/cache.json',
-    withCredentials: true
 })
 
 const marker = 338065;
