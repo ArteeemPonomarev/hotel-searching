@@ -1,5 +1,6 @@
 {
   "name": "hotel-searching",
+  "homepage":"https://ArteeemPonomarev.github.io/hotel-searching",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
