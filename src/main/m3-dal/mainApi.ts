@@ -5,9 +5,12 @@ const instance = axios.create({
     withCredentials: true
 })
 
+const marker = 338065;
+const token = 'e38af5b520f567205a7bf583e8d4d9e5';
+
 export const hotelsSearchApi = {
     getHotelsInfo: async (userParams: UserParamsType) =>  {
-        const response = await instance.get<HotelInfo[]>('', {params: {...userParams, currency:'rub'}})
+        const response = await instance.get<HotelInfo[]>('', {params: {...userParams, currency:'rub', token}})
         return response.data
     }
 }
