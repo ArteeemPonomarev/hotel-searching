@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'http://engine.hotellook.com/api/v2/cache.json'
+    baseURL: 'http://engine.hotellook.com/api/v2/cache.json',
+    withCredentials: true
 })
 
 export const hotelsSearchApi = {
