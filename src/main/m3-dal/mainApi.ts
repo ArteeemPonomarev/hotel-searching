@@ -8,8 +8,8 @@ const instance = axios.create({
 const token = 'e38af5b520f567205a7bf583e8d4d9e5';
 
 export const hotelsSearchApi = {
-    getHotelsInfo: async (userParams: UserParamsType) =>  {
-        const response = await instance.get<HotelInfo[]>('', {params: {...userParams, currency:'rub', token}})
+    getHotelsInfo: async (userParams: UserParamsType) => {
+        const response = await instance.get<HotelInfo[]>('', {params: {...userParams, currency: 'rub', token}})
         return response.data
     }
 }

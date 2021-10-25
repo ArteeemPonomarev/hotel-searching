@@ -14,13 +14,13 @@ type LoginPropsType = {
     setIsAuth: (isAuth: boolean) => void
 }
 
-export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
+export const Login: React.FC<LoginPropsType> = React.memo(({isAuth, setIsAuth}) => {
     const dispatch = useDispatch();
 
     const onSubmit = useCallback((values: { email: string, password: string }) => {
         dispatch(authActions.setUserData({...values, isLoggedIn: true}));
         setIsAuth(true);
-    }, [dispatch, setIsAuth])
+    }, [dispatch, setIsAuth]);
 
     if (isAuth) {
         return <Redirect to={HOTELS_PAGE}/>;
@@ -28,56 +28,58 @@ export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
 
     return (
         <>
-            <Form
-                className={style.login_form}
-                onFinish={onSubmit}>
+            <Form className={style.login_form}
+                  onFinish={onSubmit}>
                 <span className={style.login_form_title}>Simple Hotel Check</span>
-                <Form.Item
-                    className={style.form_item}
-                    name="email"
-                    rules={[
-                        {
-                            type: 'email',
-                            message: 'The input is not valid E-mail!',
-                        },
-                        {
-                            required: true,
-                            message: 'Please input your Email!',
-                        },
-                    ]}>
-                    <Input prefix={<UserOutlined/>}
+                <div className={style.login_item_title}>Логин</div>
+                <Form.Item className={style.login_item}
+                           name="email"
+                           rules={[
+                               {
+                                   type: 'email',
+                                   message: 'The input is not valid E-mail!',
+                               },
+                               {
+                                   required: true,
+                                   message: 'Please input your Email!',
+                               },
+                           ]}>
+                    <Input className={style.login_item_field}
+                           prefix={<UserOutlined/>}
                            type="email"
                            name="email"
                            placeholder="Email"/>
                 </Form.Item>
-                <Form.Item
-                    className={style.form_item}
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Password!',
-                        },
-                        {
-                            min: 8,
-                            message: 'Must be more than  8 characters!',
-                        },
-                        () => ({
-                            validator(_, value) {
-                                if (!/[а-яё]+/i.test(value)) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(new Error('Please use the latin letters!!'));
-                            },
-                        }),
+                <div className={style.login_item_title}>Пароль</div>
+                <Form.Item className={style.login_item}
+                           name="password"
+                           rules={[
+                               {
+                                   required: true,
+                                   message: 'Please input your Password!',
+                               },
+                               {
+                                   min: 8,
+                                   message: 'Must be more than  8 characters!',
+                               },
+                               () => ({
+                                   validator(_, value) {
+                                       if (!/[а-яё]+/i.test(value)) {
+                                           return Promise.resolve();
+                                       }
+                                       return Promise.reject(new Error('Please use the latin letters!!'));
+                                   },
+                               }),
 
-                    ]}>
-                    <Input.Password
-                        prefix={<LockOutlined/>}
-                        placeholder="Password"/>
+                           ]}>
+                    <Input.Password className={style.login_item_field}
+                                    prefix={<LockOutlined/>}
+                                    placeholder="Password"/>
                 </Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit" className={style.login_form_btn}>
+                    <Button className={style.login_item_btn}
+                            type="primary"
+                            htmlType="submit">
                         Войти
                     </Button>
                 </Form.Item>
@@ -86,4 +88,4 @@ export const Login: React.FC<LoginPropsType> = ({isAuth, setIsAuth}) => {
             <div className={style.background}></div>
         </>
     )
-};
+});

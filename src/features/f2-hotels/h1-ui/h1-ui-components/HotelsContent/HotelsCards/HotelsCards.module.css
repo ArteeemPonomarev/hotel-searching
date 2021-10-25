@@ -1,0 +1,46 @@
+.hotels_cards {
+    box-sizing: border-box;
+    width: 600px;
+    margin: 0 auto;
+    height: 500px;
+    overflow-y: scroll;
+    position: relative;
+}
+.hotels_cards::-webkit-scrollbar-track {
+    border-radius: 2px;
+    background: #E7E7E7;
+}
+.hotels_cards::-webkit-scrollbar {
+    width: 2px;
+}
+.hotels_cards::-webkit-scrollbar-thumb {
+    background: #41522E;
+    border-radius: 2px;
+    height: 50px;
+}
+.hotels_cards:hover::-webkit-scrollbar-thumb {
+    background: #41522E;
+    border-radius: 2px;
+}
+.hotel_card_wrapper {
+    display: flex;
+    border-bottom: 1px solid #e7e7e7;
+    width: 584px;
+}
+.hotel_logo{
+    margin-right: 24px;
+    background-color: rgba(65, 82, 46, 0.05);
+    background-image: url("/src/assets/icons/house.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    width: 78px;
+    height: 64px;
+    align-self: center;
+}
+.hotels_cards_spin {
+    position: absolute;
+    margin-top: 50px;
+    left: 50%;
+    z-index: 2;
+}

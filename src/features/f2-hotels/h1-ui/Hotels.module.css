@@ -1,0 +1,22 @@
+.hotels_block_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+}
+.content_wrapper {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 360px 664px;
+    grid-template-rows: repeat(2, 410px);
+    grid-gap: 24px;
+
+}
+.hotels_block_background {
+    position: relative;
+    background: #F4F4F4;
+    height: 1124px;
+}

@@ -4,11 +4,12 @@ const initialState: initialStateType = {
     email: null,
     password: null,
     isLoggedIn: false,
-
 }
+
 enum AuthEvents {
     SET_USER_DATA = 'SET_USER_DATA'
 }
+
 export const authActions = {
     setUserData: (payload: { email: string | null, password: string | null, isLoggedIn: boolean }) => {
         return {

@@ -1,0 +1,9 @@
+.carousel_wrapper{
+    padding: 0 32px;
+    margin-top: 28px;
+}
+.carousel_img {
+    width: 164px;
+    height: 149px;
+    cursor: pointer;
+}

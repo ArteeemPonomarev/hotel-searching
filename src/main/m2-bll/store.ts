@@ -2,8 +2,8 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {all} from 'redux-saga/effects';
 import {loginReducer} from "../../features/f1-login/l2-bll/login-reducer";
-import {hotelsWatcherSaga} from "../../features/f2-hotel-search/h2-bll/hotelSearch-sagas";
-import {hotelSearchReducer} from "../../features/f2-hotel-search/h2-bll/hotel-search-reducer";
+import {hotelsWatcherSaga} from "../../features/f2-hotels/h2-bll/hotelSearch-sagas";
+import {hotelSearchReducer} from "../../features/f2-hotels/h2-bll/hotel-search-reducer";
 
 
 const rootReducer = combineReducers({
@@ -22,3 +22,6 @@ function* rootWatcher() {
 // types
 export type AppStateType = ReturnType<typeof rootReducer>;
 export type InferActionsType<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never;
+
+//@ts-ignore
+window.store = store;

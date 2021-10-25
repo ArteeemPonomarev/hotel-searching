@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 export const Page404 = () => {
     return (
-        <div className={style.not_found_page}>
+        <div className={style.page_hot_found}>
             <p>404 error. Not found page!</p>
             <div>
                 <Link to={''}>

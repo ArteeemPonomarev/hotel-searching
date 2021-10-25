@@ -3,7 +3,7 @@ import moment from "moment";
 
 export const getCheckOutDate = (checkInDate: string, amountOfDays: string) => {
     let checkInAfterMoment;
-    if(checkInDate) {
+    if (checkInDate) {
         checkInAfterMoment = moment(checkInDate).format('YYYY-MM-DD');
     } else {
         checkInAfterMoment = moment().format('YYYY-MM-DD');
