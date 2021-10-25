@@ -32,50 +32,56 @@ export const Login: React.FC<LoginPropsType> = React.memo(({isAuth, setIsAuth}) 
                   onFinish={onSubmit}>
                 <span className={style.login_form_title}>Simple Hotel Check</span>
                 <div className={style.login_item_title}>Логин</div>
-                <Form.Item className={style.login_item}
-                           name="email"
-                           rules={[
-                               {
-                                   type: 'email',
-                                   message: 'The input is not valid E-mail!',
-                               },
-                               {
-                                   required: true,
-                                   message: 'Please input your Email!',
-                               },
-                           ]}>
-                    <Input className={style.login_item_field}
-                           prefix={<UserOutlined/>}
-                           type="email"
-                           name="email"
-                           placeholder="Email"/>
-                </Form.Item>
-                <div className={style.login_item_title}>Пароль</div>
-                <Form.Item className={style.login_item}
-                           name="password"
-                           rules={[
-                               {
-                                   required: true,
-                                   message: 'Please input your Password!',
-                               },
-                               {
-                                   min: 8,
-                                   message: 'Must be more than  8 characters!',
-                               },
-                               () => ({
-                                   validator(_, value) {
-                                       if (!/[а-яё]+/i.test(value)) {
-                                           return Promise.resolve();
-                                       }
-                                       return Promise.reject(new Error('Please use the latin letters!!'));
-                                   },
-                               }),
+                <div className={style.login_item}>
+                    <Form.Item
+                        name="email"
+                        rules={[
+                            {
+                                type: 'email',
+                                message: 'The input is not valid E-mail!',
+                            },
+                            {
+                                required: true,
+                                message: 'Please input your Email!',
+                            },
+                        ]}>
+                        <Input className={style.login_item_field}
+                               prefix={<UserOutlined/>}
+                               type="email"
+                               name="email"
+                               placeholder="Email"/>
+                    </Form.Item>
+                </div>
 
-                           ]}>
-                    <Input.Password className={style.login_item_field}
-                                    prefix={<LockOutlined/>}
-                                    placeholder="Password"/>
-                </Form.Item>
+                <div className={style.login_item_title}>Пароль</div>
+
+                <div className={style.login_item}>
+                    <Form.Item
+                               name="password"
+                               rules={[
+                                   {
+                                       required: true,
+                                       message: 'Please input your Password!',
+                                   },
+                                   {
+                                       min: 8,
+                                       message: 'Must be more than  8 characters!',
+                                   },
+                                   () => ({
+                                       validator(_, value) {
+                                           if (!/[а-яё]+/i.test(value)) {
+                                               return Promise.resolve();
+                                           }
+                                           return Promise.reject(new Error('Please use the latin letters!!'));
+                                       },
+                                   }),
+
+                               ]}>
+                        <Input.Password className={style.login_item_field}
+                                        prefix={<LockOutlined/>}
+                                        placeholder="Password"/>
+                    </Form.Item>
+                </div>
                 <Form.Item>
                     <Button className={style.login_item_btn}
                             type="primary"

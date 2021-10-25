@@ -28,9 +28,9 @@
 }
 .login_item {
     width: 345px;
+    height: 70px;
     box-sizing: border-box;
     border-radius: 4px;
-    margin-bottom: 24px;
 }
 .login_item_field {
     height: 50px;
