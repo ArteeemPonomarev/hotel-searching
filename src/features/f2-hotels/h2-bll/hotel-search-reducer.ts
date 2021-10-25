@@ -151,43 +151,51 @@ export const hotelSearchReducer = (state: InitialStateType = initialState, actio
         case HotelsEvents.ADD_FAVORITE_HOTEL:
             const favoriteHotel = state.hotels.filter(h => h.hotelId === action.payload.hotelId);
 
+            const isHotelExist = state.favoritesHotels.some(h => h.hotelId === favoriteHotel[0].hotelId && h.amountsOfDays === state.daysAmount)
 
-            const newFavoriteHotel = favoriteHotel.map(fH => {
-                return (
-                    {
-                        priceForm: fH.priceForm,
-                        priceAvg: fH.priceAvg,
-                        pricePercentile: {
-                            3: fH.pricePercentile["3"],
-                            10: fH.pricePercentile["10"],
-                            35: fH.pricePercentile["35"],
-                            50: fH.pricePercentile["50"],
-                            75: fH.pricePercentile["75"],
-                            99: fH.pricePercentile["99"]
-                        },
-                        hotelId: fH.hotelId,
-                        location: {
-                            name: fH.location.name,
-                            country: fH.location.country,
-                            state: fH.location.state,
-                            geo: {
-                                lon: fH.location.geo.lon,
-                                lat: fH.location.geo.lat
-                            }
-                        },
-                        locationId: fH.locationId,
-                        stars: fH.stars,
-                        hotelName: fH.hotelName,
-                        favorite: fH.favorite,
-                        checkIn: action.payload.checkIn,
-                        amountsOfDays: action.payload.amountsOfDays
-                    }
-                )
-            })
-            return {
-                ...state,
-                favoritesHotels: [...state.favoritesHotels, ...newFavoriteHotel]
-            };
+            if (isHotelExist) {
+                return state
+            } else {
+
+                const deepCopyFavoriteHotel = favoriteHotel.map(fH => {
+                    return (
+                        {
+                            priceForm: fH.priceForm,
+                            priceAvg: fH.priceAvg,
+                            pricePercentile: {
+                                3: fH.pricePercentile["3"],
+                                10: fH.pricePercentile["10"],
+                                35: fH.pricePercentile["35"],
+                                50: fH.pricePercentile["50"],
+                                75: fH.pricePercentile["75"],
+                                99: fH.pricePercentile["99"]
+                            },
+                            hotelId: fH.hotelId,
+                            location: {
+                                name: fH.location.name,
+                                country: fH.location.country,
+                                state: fH.location.state,
+                                geo: {
+                                    lon: fH.location.geo.lon,
+                                    lat: fH.location.geo.lat
+                                }
+                            },
+                            locationId: fH.locationId,
+                            stars: fH.stars,
+                            hotelName: fH.hotelName,
+                            favorite: fH.favorite,
+                            checkIn: action.payload.checkIn,
+                            amountsOfDays: action.payload.amountsOfDays
+                        }
+                    )
+                })
+
+                return {
+                    ...state,
+                    favoritesHotels: [...state.favoritesHotels, ...deepCopyFavoriteHotel]
+                }
+            }
+            ;
         case HotelsEvents.REMOVE_FAVORITE_HOTEL:
             return {...state, favoritesHotels: state.favoritesHotels.filter(h => h.hotelId !== action.payload)};
         case HotelsEvents.SET_THE_BEST_RATING_HOTELS:

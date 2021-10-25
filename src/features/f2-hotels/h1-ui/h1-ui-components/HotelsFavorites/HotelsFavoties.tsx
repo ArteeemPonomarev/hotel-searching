@@ -36,7 +36,7 @@ export const HotelsFavoties: React.FC<HotelsFavotiesPropsTitle> = React.memo((
 
     const favoritesHotelsList = favoritesHotels.map(h => {
         return (
-            <div key={`${h.hotelId} ${h.amountsOfDays} ${h.location.geo.lat}`} className={style.favorites_cards}>
+            <div key={`${h.hotelId} ${h.amountsOfDays}`} className={style.favorites_cards}>
                 <HotelCard
                     checkInDateFormated={checkInDateFormatted}
                     hotelName={h.hotelName}
